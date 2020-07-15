@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+		<typeAlias alias="dto_mem" type="com.jsinc.jsincDTO.MemberDTO"/>
+		<typeAlias alias="dto_att" type="com.jsinc.jsincDTO.AttendanceDTO"/>
+		<typeAlias alias="dto_board" type="com.jsinc.jsincDTO.BoardDTO"/>
+		<typeAlias alias="dto_com" type="com.jsinc.jsincDTO.CommunityDTO"/>
+		<typeAlias alias="dto_sur" type="com.jsinc.jsincDTO.SurveyDTO"/>
+		<typeAlias alias="dto_sr" type="com.jsinc.jsincDTO.SurveyResultDTO"/>
+		<typeAlias alias="dto_com02" type="com.jsinc.jsincDTO.CommunityConDTO"/>
+		<typeAlias alias="dto_todo" type="com.jsinc.jsincDTO.ToDoListDTO"/>
+		<typeAlias alias="dto_sign" type="com.jsinc.jsincDTO.SignDTO"/>
+		<typeAlias alias="dto_msg" type="com.jsinc.jsincDTO.MessageDTO"/>
+		<typeAlias alias="dto_report" type="com.jsinc.jsincDTO.ReportDTO"/>
+   </typeAliases>
+</configuration>

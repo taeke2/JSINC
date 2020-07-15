@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jsinc.mybatis.Master">
+	<!-- 사원 관리 -->
+	<select id="listAll" resultType="dto_mem">
+		select * from jsinc
+	</select>
+	
+	<select id="member" resultType="dto_mem">
+		select * from jsinc where empNo=#{empNo}
+	</select>
+	
+	<update id="edit">
+		update jsinc set name=#{name}, birth=#{birth}, userEmail=#{userEmail}, phoneNumber=#{phoneNumber}, gender=#{gender}, rank=#{rank}, dep=#{dep} where empNo=#{empNo}
+	</update>
+	
+	<delete id="delete">
+		delete from jsinc where empNo=#{empNo}
+	</delete>
+	<!-- 커뮤니티 관리 -->
+	<select id="comAll" resultType="dto_com">
+		select * from createcom
+	</select>
+	
+	<update id="permissionCom">
+		update createcom set autho='Y' where title=#{title}
+	</update>
+	
+	<delete id="delCom">
+		delete from createcom where title=#{title}
+	</delete>
+	
+	<!-- 설문 관리 -->
+	<select id="surAll" resultType="dto_sur">
+		select * from jsinc_survey
+	</select>
+	
+	<update id="permissionSur">
+		update jsinc_survey set autho='Y' where title=#{title}
+	</update>
+	
+	<delete id="delSur">
+		delete from jsinc_survey where title=#{title}
+	</delete>
+	
+</mapper>

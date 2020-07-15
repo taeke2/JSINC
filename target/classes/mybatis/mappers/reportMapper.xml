@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jsinc.mybatis.Report">
+	<select id="listAll" resultType="dto_report">
+		select
+			bno,regdate,department,report,title,target,writer
+		from
+			jsinc_report
+		where	
+			department = #{department}
+		order
+			by bno desc
+	</select>
+		<insert id="insert" parameterType="dto_report">
+		insert into jsinc_report(bno,department,report,content,target,title,writer)
+		values((select nvl(max(bno)+1,1)from jsinc_report),#{department},#{report},#{content},#{target},#{title},#{writer})
+	</insert>
+	<select id="read" resultType="com.jsinc.jsincDTO.ReportDTO">
+		select bno,department,report,regdate,content,title,writer,target
+		from jsinc_report 
+		where bno = #{bno}
+	</select>
+	<update id="update" parameterType="dto_report">
+		update jsinc_report set
+			title = #{title},
+			report = #{report},
+			content = #{content},
+			department = #{department},
+			target = #{target}
+		where bno = #{bno}
+	</update>
+	<delete id="delete">
+		delete from jsinc_report
+		where bno = #{bno}
+	</delete>
+</mapper>

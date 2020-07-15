@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jsinc.mybatis.todoList">
+	<select id="listAll" resultType="dto_todo">
+		select * from jsinc_todo where empNo=#{empNo} and eDate=#{eDate} order by sDate asc
+	</select>
+	
+	<insert id="addList">
+		insert into jsinc_todo(empNo,eDate,todo,sDate) values(#{empNo},#{eDate},#{todo},#{sDate})
+	</insert>
+	
+	<update id="check" parameterType="dto_todo">
+		update jsinc_todo set checked=#{checked} where todo=#{todo}
+	</update>
+	
+	<select id="editPage" resultType="dto_todo">
+		select * from jsinc_todo where todo=#{todo}
+	</select>
+	
+	<update id="edit">
+		update jsinc_todo set todo=#{sDate} where todo=#{todo}
+	</update>
+	
+	<delete id="del">
+		delete from jsinc_todo where todo=#{todo}
+	</delete>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jsinc.mybatis.Survey">
+	<select id="listAll" resultType="dto_sur">
+		select * from jsinc_survey where state=#{state} and autho='Y'
+	</select>
+	
+	<select id="myList" resultType="dto_sur">
+		select * from jsinc_survey where empNo=#{empNo}
+	</select>
+	
+	<insert id="input" parameterType="dto_sur">
+		insert into jsinc_survey values(#{empNo}, #{title}, #{text}, #{sDate}, #{eDate},#{writer},#{state},#{opt},'N')
+	</insert>
+	
+	<select id="survey" resultType="dto_sur">
+		select * from jsinc_survey where title=#{title}
+	</select>
+	
+	<update id="endChk">
+		update jsinc_survey set state=#{state} where title=#{title}
+	</update>
+	<!-- ============================================================================================================ -->
+	<insert id="inputResult" parameterType="dto_sr">
+		insert into survey_result values(#{empNo}, #{title}, #{result})
+	</insert>
+	
+	<select id="resultChk" resultType="int">
+		select count(*) from survey_result where empNo=#{empNo} and title=#{title}
+	</select>
+	
+	<select id="resultAll" resultType="int">
+		select count(*) from survey_result where title=#{title}
+	</select>
+	
+	<select id="answerCnt" resultType="int">
+		select count(*) from survey_result where result=#{result} and title=#{title}
+	</select>
+	<!-- ============================================================================================================ -->
+	<select id="todayList" resultType="dto_sur">
+		select * from jsinc_survey where sDate=#{sDate}
+	</select>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jsinc.mybatis.Board">
+	<select id="listAll" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate
+		from 
+			jsinc_board
+		order by
+			bno desc
+	</select>
+
+	<insert id="insert" parameterType="dto_board">
+		insert into jsinc_board(bno,title,content,writer) values((select nvl(max(bno)+1, 1)from jsinc_board),#{title},#{content},#{writer})
+	</insert>
+	<select id="view" resultType="dto_board">
+		select * from jsinc_board where bno = #{bno}	
+	</select>
+	
+	<update id="update">
+		update jsinc_board set
+			title = #{title},
+			writer = #{writer},
+			content = #{content}
+		where bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		delete from jsinc_board
+		where bno = #{bno}
+	</delete> 
+	<!-- 자료실 -->
+	<insert id="fileUpload" parameterType="dto_board">
+		insert into jsinc_reference(bno,title,content,writer,savefile,realfile,department) 
+		values((select nvl(max(bno)+1, 1)from jsinc_reference),#{title},#{content},#{writer},#{savefile},#{realfile},#{department})
+	</insert>
+	<select id="fileList" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			department,
+			regdate
+		from
+			jsinc_reference
+		order by
+			bno desc
+	</select>
+	<select id="fileView" resultType="com.jsinc.jsincDTO.BoardDTO">
+		select
+			*
+		from jsinc_reference
+		where bno = #{bno}
+	</select>
+	<update id="fileUpdate">
+	update jsinc_reference set
+			title = #{title},
+			content = #{content},
+			writer = #{writer}
+		where bno = #{bno}
+	</update>
+	<delete id="fileDelete">
+	delete from jsinc_reference
+		where bno = #{bno}
+	</delete>
+	
+	<select id="file" resultType="com.jsinc.jsincDTO.BoardDTO">
+		select savefile from jsinc_reference where realfile = #{realfile}
+	</select>
+		<!-- 부서별 게시판 -->
+	<select id="develop" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		where
+			department = '개발부'
+		order by bno desc
+	</select>
+	<select id="support" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		where
+			department = '경영지원부'
+		order by bno desc
+	</select>
+	<select id="accounting" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		where
+			department = '경리부'
+		order by bno desc
+	</select>
+	<select id="quality" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		where
+			department = '품질관리부'
+		order by bno desc
+	</select>
+	<select id="overseas" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		where
+			department = '해외영업부'
+		order by bno desc
+	</select>
+	<select id="allList" resultType="dto_board">
+		select
+			bno,
+			title,
+			writer,
+			regdate,
+			department
+		from
+			jsinc_department
+		order by bno desc
+	</select>
+	<insert id="depCreate">
+	insert into jsinc_department(bno,title,content,writer,department) 
+		values((select nvl(max(bno)+1, 1)from jsinc_department),#{title},#{content},#{writer},#{department})
+	</insert>
+	<update id="depUpdate">
+	update jsinc_department set
+			title = #{title},
+			content = #{content},
+			writer = #{writer}
+		where bno = #{bno}
+	</update>
+	<delete id="depDelete">
+	delete jsinc_department
+	where bno = #{bno}
+	</delete>
+	<select id="depRead" resultType="dto_board">
+	select * from jsinc_department
+	where bno = #{bno}
+	</select>
+	
+	
+	
+</mapper>
