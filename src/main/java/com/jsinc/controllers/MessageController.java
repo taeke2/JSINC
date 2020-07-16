@@ -20,6 +20,8 @@ import com.jsinc.services.message.SentViewServiceImpl;
 import com.jsinc.services.message.ServiceMes;
 import com.jsinc.services.message.ViewContentServiceImpl;
 
+// 작성자 : 서해준
+
 @Controller
 public class MessageController {
 	ApplicationContext ac = App.ac;

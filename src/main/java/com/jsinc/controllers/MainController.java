@@ -2,7 +2,6 @@ package com.jsinc.controllers;
 
 import java.io.File;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -15,7 +14,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,120 +32,107 @@ import com.jsinc.services.message.MsgAlarmServiceImpl;
 import com.jsinc.services.message.RecentServiceImpl;
 import com.jsinc.services.message.ServiceMes;
 
+// ì‘ì„±ì : í—ˆì„±íƒ, ì„œí•´ì¤€, ì„ì¬ë§Œ
+
 @Controller
 public class MainController {
 	ApplicationContext ac = App.ac;
 	static String vali;
 	private ServiceIf service;
+
 	@Autowired
 	MailService mailService;
-	ProfileService profileService;
 	ServiceMes msgService;
 	ComponentService comService;
 
-	@Resource(name = "uploadPath") // ¾÷·Îµå °æ·Î (ÃâÃ³ : servlet-context)
+	@Resource(name = "uploadPath") // ì—…ë¡œë“œ ê²½ë¡œ (ì¶œì²˜ : servlet-context)
 	private String uploadPath;
 
+	// ë¡œê·¸ì¸ í™•ì¸
 	@RequestMapping("loginChk")
 	public String loginChk(Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("request", request);
 		service = ac.getBean("loginService", LoginService.class);
 		int result = service.execute(model);
-		
+		// ë©”ì„¸ì§€ ì•ŒëŒ ìˆ˜ í‘œì‹œ
 		if (result == 0) {
-			msgService=ac.getBean("msgAlarmServiceImpl",MsgAlarmServiceImpl.class);
-			model.addAttribute("request",request);
+			msgService = ac.getBean("msgAlarmServiceImpl", MsgAlarmServiceImpl.class);
+			model.addAttribute("request", request);
 			msgService.execute(model);
 			return "redirect:index";
 		}
 		return "home";
 	}
 
+	// ë©”ì¸ í˜ì´ì§€
 	@RequestMapping("index")
 	public String index(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
+		// ìµœê·¼ ë“±ë¡ëœ ì„¤ë¬¸
 		comService = ac.getBean("resentSurveyService", ResentSurveyService.class);
 		comService.execute(model);
-		
-		msgService=ac.getBean("recentServiceImpl",RecentServiceImpl.class);
+
+		// ì•ˆì½ì€ ë©”ì„¸ì§€
+		msgService = ac.getBean("recentServiceImpl", RecentServiceImpl.class);
 		msgService.execute(model);
-		
+
 		return "index";
 	}
 
-	@RequestMapping("profile")
-	public String profile(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		profileService = ac.getBean("profileValueServiceImpl", ProfileValueServiceImpl.class);
-		profileService.execute(model);
-		return "profile";
-	}
-
-	@RequestMapping("editProfile")
-	public String editProfile(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		profileService = ac.getBean("profileEditServiceImpl", ProfileEditServiceImpl.class);
-		profileService.execute(model);
-		return "redirect:profile";
-	}
-
-	@RequestMapping("changePw")
-	public String changePw(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		profileService = ac.getBean("passwordChangeService", PasswordChangeService.class);
-		profileService.execute(model);
-		return "redirect:profile";
-	}
-
+	// ë¡œê·¸ì•„ì›ƒ
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		ServletContext application = session.getServletContext();
-		application.removeAttribute("user");
-		application.removeAttribute("start");
-		application.removeAttribute("end");
+		application.removeAttribute("user"); // ë¡œê·¸ì¸ ìœ ì € ì •ë³´ ì‚­ì œ
+		application.removeAttribute("start"); // ì¶œê·¼ ì‹œê°„ ì‚­ì œ
+		application.removeAttribute("end"); // í‡´ê·¼ ì‹œê°„ ì‚­ì œ
 		return "home";
 	}
 
+	// íšŒì›ê°€ì…
 	@RequestMapping("join")
 	public String view() {
 		return "join";
 	}
-
+	
+	// ì´ë©”ì¼ ì¸ì¦ë²ˆí˜¸ ì „ì†¡
 	@RequestMapping("doSend")
 	@ResponseBody
 	public String doSend(String email, String title, String body, HttpServletRequest req) {
 
-		title = "JSInc. È¸¿ø°¡ÀÔ ÀÎÁõ ÄÚµå ¹ß±Ş ¾È³» ÀÔ´Ï´Ù.";
+		title = "JSInc. íšŒì›ê°€ì… ì¸ì¦ ì½”ë“œ ë°œê¸‰ ì•ˆë‚´ ì…ë‹ˆë‹¤.";
 		email = req.getParameter("userEmail");
-		body = "±ÍÇÏÀÇ ÀÎÁõ ÄÚµå´Â" + vali + " ÀÔ´Ï´Ù.";
-
+		body = "ê·€í•˜ì˜ ì¸ì¦ ì½”ë“œëŠ”" + vali + " ì…ë‹ˆë‹¤.";
+		
 		char[] charSet = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'e', 'F', 'G', 'h', 'I',
 				'j', 'K', 'L', 'm', 'O', 'p', 'Q', 'r', 'S', 't' };
-
+		
+		// ëœë¤ ì¸ì¦ë²ˆí˜¸ ìƒì„±
 		StringBuffer newKey = new StringBuffer();
 		for (int i = 0; i < 10; i++) {
 			int idx = (int) (charSet.length * Math.random());
 			newKey.append(charSet[idx]);
 		}
 		this.vali = newKey.toString();
-		System.out.println("»ç¿ëÀÚ ÀÌ¸ŞÀÏ:" + email);
-		System.out.println("ÀÎÁõÄÚµå:" + vali);
-		title = "JSInc. È¸¿ø°¡ÀÔ ÀÎÁõ ÄÚµå ¹ß±Ş ¾È³» ÀÔ´Ï´Ù.";
+		System.out.println("ì‚¬ìš©ì ì´ë©”ì¼:" + email);
+		System.out.println("ì¸ì¦ì½”ë“œ:" + vali);
+		title = "JSInc. íšŒì›ê°€ì… ì¸ì¦ ì½”ë“œ ë°œê¸‰ ì•ˆë‚´ ì…ë‹ˆë‹¤.";
 		body = "";
 		body += "<div align='center' style='border:1px solid black;' font-family:verdana'>";
-		body += "<h3 style='color:blue;'>±ÍÇÏÀÇ ÀÎÁõÄÚµå ÀÔ´Ï´Ù. </h3>";
-		body += "<p>ÀÎÁõÄÚµå: <strong>" + vali + "</strong></p></div>";
-
+		body += "<h3 style='color:blue;'>ê·€í•˜ì˜ ì¸ì¦ì½”ë“œ ì…ë‹ˆë‹¤. </h3>";
+		body += "<p>ì¸ì¦ì½”ë“œ: <strong>" + vali + "</strong></p></div>";
+		
 		Map<String, Object> sendRs = mailService.send(email, title, body);
 		return (String) sendRs.get("msg");
 	}
 
+	// ì¸ì¦ë²ˆí˜¸ ì¼ì¹˜ì—¬ë¶€ í™•ì¸
 	@RequestMapping(value = "chkEmail", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String chkEmail(HttpServletRequest req) {
 		String chkNum = (String) req.getParameter("chkNum");
-		System.out.println("ÀÔ·ÂÇÑ ÀÎÁõ¹øÈ£" + chkNum);
-		System.out.println("ÀÎÁõ¹øÈ£=======" + vali);
+		System.out.println("ì…ë ¥í•œ ì¸ì¦ë²ˆí˜¸" + chkNum);
+		System.out.println("ì¸ì¦ë²ˆí˜¸=======" + vali);
 		if (vali.equals(chkNum)) {
 			return 0 + "";
 		} else if (chkNum.equals("")) {
@@ -156,7 +141,8 @@ public class MainController {
 			return 2 + "";
 		}
 	}
-
+	
+	// ì‚¬ì›ë²ˆí˜¸ ì¤‘ë³µí™•ì¸
 	@RequestMapping(value = "empNoChk", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String empNoChk(MemberDTO dto) throws Exception {
@@ -166,7 +152,8 @@ public class MainController {
 		System.out.println("result: " + result);
 		return result + "";
 	}
-
+	
+	// ì´ë©”ì¼ ì¤‘ë³µí™•ì¸
 	@RequestMapping(value = "userEmailChk", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String userEmailChk(HttpServletRequest req) throws Exception {
@@ -177,18 +164,16 @@ public class MainController {
 		System.out.println("result:" + result);
 		return result + "";
 	}
-
+	
+	// ì‚¬ì§„ ì—…ë¡œë“œ
 	@RequestMapping("registerMem")
 	public String registerMem(MemberDTO dto, Model model, MultipartFile profile) throws Exception {
-		// ¾÷·Îµå
-		UUID uuid = UUID.randomUUID(); // ÆÄÀÏ ÀÌ¸§ Áßº¹ ¹æÁö
-		String saveName = uuid + "_" + profile.getOriginalFilename(); // UUID°¡ ºÙÀº ÆÄÀÏÀÌ¸§À» °´Ã¼¿¡ ÀúÀå
-		File saveFile = new File(uploadPath + File.separator + "img" + File.separator + "profile", saveName);// ÀúÀåÇÒ Æú´õ
-																												// ÀÌ¸§ ,
-																												// ÀúÀåÇÒ
-																												// ÆÄÀÏ ÀÌ¸§
+		// ì—…ë¡œë“œ
+		UUID uuid = UUID.randomUUID(); // íŒŒì¼ ì´ë¦„ ì¤‘ë³µ ë°©ì§€
+		String saveName = uuid + "_" + profile.getOriginalFilename(); // UUIDê°€ ë¶™ì€ íŒŒì¼ì´ë¦„ì„ ê°ì²´ì— ì €ì¥
+		File saveFile = new File(uploadPath + File.separator + "img" + File.separator + "profile", saveName);// ì €ì¥í•  í´ë” , ì´ë¦„, ì €ì¥í•  íŒŒì¼ ì´ë¦„
 		try {
-			profile.transferTo(saveFile); // ¾÷·Îµå ÆÄÀÏ¿¡ saveFileÀÌ¶ó´Â ²®µ¥±â ÀÔÈ÷±â
+			profile.transferTo(saveFile); // ì—…ë¡œë“œ íŒŒì¼ì— saveFileì´ë¼ëŠ” ê»ë°ê¸° ì…íˆê¸°
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -201,14 +186,16 @@ public class MainController {
 
 		return "home";
 	}
-
+	
+	// ë¹„ë°€ë²ˆí˜¸ ì´ˆê¸°í™”
 	@RequestMapping("lostPw")
 	@ResponseBody
 	public String lostPw(MemberDTO dto) throws Exception {
 		int result = 0;
 		char[] charSet = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'e', 'F', 'G', 'h', 'I',
 				'j', 'K', 'L', 'm', 'O', 'p', 'Q', 'r', 'S', 't' };
-
+		
+		// ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ìƒì„±
 		StringBuffer newKey = new StringBuffer();
 		for (int i = 0; i < 10; i++) {
 			int idx = (int) (charSet.length * Math.random());
@@ -216,27 +203,30 @@ public class MainController {
 		}
 		String sentpw = newKey.toString();
 		dto.setPassword(sentpw);
-		System.out.println("»ç¿ëÀÚ ÀÌ¸ŞÀÏ:" + dto.getUserEmail());
-		System.out.println("ÀÓ½Ã ºñ¹Ğ¹øÈ£:" + dto.getPassword());
-		String title = "JSInc. ÀÓ½Ã ºñ¹Ğ¹øÈ£ ¹ß±Ş ¾È³» ÀÔ´Ï´Ù.";
+		System.out.println("ì‚¬ìš©ì ì´ë©”ì¼:" + dto.getUserEmail());
+		System.out.println("ì„ì‹œ ë¹„ë°€ë²ˆí˜¸:" + dto.getPassword());
+		String title = "JSInc. ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ë°œê¸‰ ì•ˆë‚´ ì…ë‹ˆë‹¤.";
 		String body = "";
 		body += "<div align='center' style='border:1px solid black;' font-family:verdana'>";
-		body += "<h3 style='color:blue;'>±ÍÇÏÀÇ ÀÓ½Ã ºñ¹Ğ¹øÈ£ ÀÔ´Ï´Ù. ·Î±×ÀÎ ÈÄ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ¼¼¿ä.</h3>";
-		body += "<p>ÀÓ½Ã ºñ¹Ğ¹øÈ£: <strong>" + sentpw + "</strong></p></div>";
+		body += "<h3 style='color:blue;'>ê·€í•˜ì˜ ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì…ë‹ˆë‹¤. ë¡œê·¸ì¸ í›„ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì„¸ìš”.</h3>";
+		body += "<p>ì„ì‹œ ë¹„ë°€ë²ˆí˜¸: <strong>" + sentpw + "</strong></p></div>";
 		Map<String, Object> sendRs = mailService.send(dto.getUserEmail(), title, body);
-
+		
+		// ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì´ˆê¸°í™”
 		service = ac.getBean("memberServiceImpl", MemberServiceImpl.class);
 		service.sentPw(dto);
 
 		return (String) sendRs.get("msg");
 
 	}
-
+	
+	// í™”ë©´ ì ê¸ˆ
 	@RequestMapping("lockScreen")
 	public String lockScreen() {
 		return "lockScreen";
 	}
-
+	
+	// í™”ë©´ ì ê¸ˆ í•´ì²´
 	@RequestMapping("lock")
 	public String lock(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();

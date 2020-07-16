@@ -22,6 +22,8 @@ import com.jsinc.services.community.ServiceCom;
 import com.jsinc.services.community.SignUpServiceImpl;
 import com.jsinc.services.community.ViewServiceImpl;
 
+// 작성자 : 서해준, 허성택
+
 @Controller
 public class CommunityController {
 	ApplicationContext ac = App.ac;
@@ -76,6 +78,7 @@ public class CommunityController {
 		return "community/viewCom";
 	}
 
+	// 댓글 보기
 	@RequestMapping("contentView")
 	public String contentView(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);

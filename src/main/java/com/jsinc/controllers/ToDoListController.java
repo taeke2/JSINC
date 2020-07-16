@@ -15,11 +15,14 @@ import com.jsinc.services.todo.EditService;
 import com.jsinc.services.todo.ServiceIf;
 import com.jsinc.services.todo.TodoListService;
 
+// 작성자 : 허성택
+
 @Controller
 public class ToDoListController {
 	ApplicationContext ac = App.ac;
 	ServiceIf service;
 	
+	// 스케줄 리스트 페이지
 	@RequestMapping("toDoList")
 	public String toDoList(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -28,11 +31,13 @@ public class ToDoListController {
 		return "toDoList/toDoList";
 	}
 	
+	// 할일 등록 페이지
 	@RequestMapping("addTodo")
 	public String addTodo() {
 		return "toDoList/addTodo";
 	}
 	
+	// 할일 추가 기능
 	@RequestMapping("addList")
 	public String addList(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -41,6 +46,7 @@ public class ToDoListController {
 		return "redirect:toDoList";
 	}
 	
+	// 체크 버튼
 	@RequestMapping("check")
 	public String check(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -49,6 +55,7 @@ public class ToDoListController {
 		return "redirect:toDoList";
 	}
 	
+	// 수정 버튼 클릭 시 수정 페이지 이동
 	@RequestMapping("editPage")
 	public String editPage(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -57,6 +64,7 @@ public class ToDoListController {
 		return "toDoList/editPage";
 	}
 	
+	// 수정 버튼 클릭
 	@RequestMapping("edit")
 	public String edit(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -65,6 +73,7 @@ public class ToDoListController {
 		return "redirect:toDoList";
 	}
 	
+	// 할 일 삭제
 	@RequestMapping("delete")
 	public String delete(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);

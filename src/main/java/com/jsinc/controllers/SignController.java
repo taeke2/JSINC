@@ -20,42 +20,47 @@ import com.jsinc.jsincDTO.MemberDTO;
 import com.jsinc.jsincDTO.SignDTO;
 import com.jsinc.services.sign.signService;
 
+// 작성자 : 임재만
+
 @Controller
 public class SignController {
 	ApplicationContext ac = App.ac;
 
 	@Autowired
 	signService ss;
-	
+
 	@RequestMapping("newSign")
 	public String newSign() {
 		return "sign/new";
 	}
-	@RequestMapping(value="signInsert",method = RequestMethod.POST)
+
+	@RequestMapping(value = "signInsert", method = RequestMethod.POST)
 	public String signInsert(@ModelAttribute SignDTO dto) {
 		ss.createSign(dto);
 		return "redirect:signWait";
 	}
+
 	@RequestMapping("aproved")
 	public ModelAndView signAproved(@RequestParam int bno) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sign/aproved");
-		mav.addObject("sign",ss.read(bno));
+		mav.addObject("sign", ss.read(bno));
 		return mav;
 	}
+
 	@RequestMapping("signApprove")
 	public ModelAndView signApprove(HttpServletRequest request) {
 		HttpSession sessoin = request.getSession();
 		ServletContext application = sessoin.getServletContext();
-		MemberDTO dto = (MemberDTO)application.getAttribute("user");
-		String target = dto.getName()+" "+dto.getRank();
+		MemberDTO dto = (MemberDTO) application.getAttribute("user");
+		String target = dto.getName() + " " + dto.getRank();
 		List<SignDTO> list = ss.lists(target);
-		ModelAndView mav = new  ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sign/list");
-		mav.addObject("sign",ss.lists(target));
+		mav.addObject("sign", ss.lists(target));
 		return mav;
 	}
-	
+
 	@RequestMapping("signSuccess")
 	public ModelAndView signSuccess() {
 		List<SignDTO> list = ss.successList();
@@ -64,18 +69,20 @@ public class SignController {
 		mav.addObject("sign", list);
 		return mav;
 	}
+
 	@RequestMapping("signWait")
 	public ModelAndView signWaiting(HttpServletRequest request) {
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
-		MemberDTO dto = (MemberDTO)application.getAttribute("user");
+		MemberDTO dto = (MemberDTO) application.getAttribute("user");
 		int empno = dto.getEmpNo();
 		List<SignDTO> list = ss.waitList(empno);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("sign/waiting");
-		mav.addObject("sign",list);
+		mav.addObject("sign", list);
 		return mav;
 	}
+
 	@RequestMapping("confirm")
 	public String confirm(@RequestParam int bno) {
 		SignDTO dto = new SignDTO();
@@ -84,6 +91,7 @@ public class SignController {
 		ss.update(dto);
 		return "redirect:signSuccess";
 	}
+
 	@RequestMapping("reject")
 	public String reject(@RequestParam int bno) {
 		SignDTO dto = new SignDTO();
@@ -92,11 +100,11 @@ public class SignController {
 		ss.update(dto);
 		return "redirect:signSuccess";
 	}
+
 	@RequestMapping("deleteSign")
 	public String deleteSign(@RequestParam int bno) {
 		ss.delete(bno);
 		return "redirect:signWait";
 	}
-	
-	
+
 }

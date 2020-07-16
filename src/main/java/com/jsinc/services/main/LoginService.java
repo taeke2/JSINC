@@ -32,6 +32,7 @@ public class LoginService implements ServiceIf {
 		String password = request.getParameter("password");
 		MemberDTO dto = dao.list(empNo);
 		if (dto != null) {
+			// Login Success 
 			if (password.equals(dto.getPassword())) {
 				Date date = new Date();
 				SimpleDateFormat format = new SimpleDateFormat("MM");
@@ -43,10 +44,10 @@ public class LoginService implements ServiceIf {
 				application.setAttribute("user", dto);
 				application.setAttribute("loginMonth", month);
 				application.setAttribute("loginDay", days);
-				return CHK_OK;
+				return CHK_OK;	// 0
 			}
 		}
-		return CHK_NO;
+		return CHK_NO;	// 1
 	}
 
 	@Override

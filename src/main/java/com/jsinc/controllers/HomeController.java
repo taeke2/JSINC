@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+// 작성자 : 허성택
+
 @Controller
 public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)

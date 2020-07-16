@@ -16,7 +16,7 @@ public class MailServiceImpl implements MailService {
 	private JavaMailSender sender;
 
 	public Map<String, Object> send(String email, String title, String body) {
-
+		// 핸들러를 사용하여 메일 전송
 		MailHandler mail;
 		try {
 			mail = new MailHandler(sender);

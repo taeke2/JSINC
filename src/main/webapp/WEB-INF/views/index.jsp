@@ -103,7 +103,7 @@ ul li img {
 
 					<!-- 쪽지 -->
 					<li class="sub-menu">
-						<a href="javascript:;"> 
+						<a href="javascript:;">
 							<i class="fa fa-comments-o"></i> <span>쪽지함</span>
 							<span class="label label-theme pull-right mail-info">${msgAlarm }</span>
 						</a>
@@ -130,12 +130,13 @@ ul li img {
 			</div>
 		</aside>
 		<!--sidebar end-->
+		
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper">
 				<div class="row">
 					<div class="col-lg-9 main-chart">
-					<!-- 사진 슬라이드 -->
+						<!-- img slide -->
 						<div class="border-head"></div>
 						<div class="custom-bar-chart" style="width: 100%; margin: 0 auto; margin-bottom: 50px;">
 							<div align="center" style="margin: 0 auto;">
@@ -239,6 +240,7 @@ ul li img {
 							<!-- /col-md-4 -->
 						</div>
 						<!-- /row -->
+						
 						<div class="row">
 							<!-- WEATHER PANEL -->
 							<div class="col-md-4 mb">
@@ -335,10 +337,9 @@ ul li img {
 		<!--main content end-->
 		<jsp:include page="default/footer.jsp" />
 	</section>
-	<!-- 날씨 -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+	
+	<!-- Weather -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	$.getJSON('http://api.openweathermap.org/data/2.5/weather?lat=37.5711258&lon=126.991981&APPID=254aee44df076ff4abe18019eaec0bbf', function(data){
 		var $cTemp=Math.floor(data.main.temp-273.15)+"ºC";

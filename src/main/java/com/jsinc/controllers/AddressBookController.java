@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jsinc.services.addressBook.AddressBookService;
 
+// 작성자 : 허성택
 
 @Controller
 public class AddressBookController {
 	@Autowired
 	AddressBookService service;
 	
+	// 주소록
 	@RequestMapping("addressBook")
 	public String addressBook(Model model) {
 		service.execute(model);
