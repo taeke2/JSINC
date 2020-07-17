@@ -6,13 +6,16 @@ import org.springframework.stereotype.Repository;
 
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 서해준
+
+// 회원가입 DAO
 @Repository
 public class MemberDAO {
-
 	private static final String namespace = "com.jsinc.mybatis.Member";
 	@Autowired
 	private SqlSession sqlSession;
-
+	
+	// 리스트 가져오기
 	public MemberDTO list(String empNo) {
 		return sqlSession.selectOne(namespace + ".list", empNo);
 	}
@@ -43,7 +46,7 @@ public class MemberDAO {
 	public void editProfile(MemberDTO dto) throws Exception {
 		sqlSession.update(namespace + ".editProfile", dto);
 	}
-	
+
 	// 비밀번호 변경
 	public void passwordChange(MemberDTO dto) {
 		sqlSession.update(namespace + ".passwordChange", dto);

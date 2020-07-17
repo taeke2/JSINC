@@ -1,6 +1,5 @@
 package com.jsinc.jsincDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.jsinc.jsincDTO.CommunityConDTO;
 import com.jsinc.jsincDTO.CommunityDTO;
 
+// 작성자 : 서해준, 허성택
+
+// 커뮤니티 DAO
 @Repository
 public class CommunityDAO {
 	private static final String namespace = "com.jsinc.mybatis.community";
@@ -71,16 +73,18 @@ public class CommunityDAO {
 	public int leave(CommunityDTO dto) {
 		return sqlSession.delete(namespace + ".leave", dto);
 	}
-	//댓글 등록
+
+	// 댓글 등록
 	public int replySave(CommunityConDTO dto) {
 		updateReply(dto);
-		return sqlSession.insert(namespace+".replySave",dto);
+		return sqlSession.insert(namespace + ".replySave", dto);
 	}
-	//기존 댓글들의 step을 올림
+
+	// 기존 댓글들의 step을 올림
 	public void updateReply(CommunityConDTO dto) {
-		int step=dto.getStep();
+		int step = dto.getStep();
 		System.out.println("dao updateReply step : " + step);
-		sqlSession.update(namespace+".updateReply",dto);
+		sqlSession.update(namespace + ".updateReply", dto);
 	}
 
 }
