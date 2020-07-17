@@ -16,6 +16,9 @@ import com.jsinc.jsincDAO.SurveyDAO;
 import com.jsinc.jsincDTO.MemberDTO;
 import com.jsinc.jsincDTO.SurveyDTO;
 
+// 작성자 : 허성택
+
+// 새 설문 작성 서비스
 @Service
 public class CreateSurveyService implements ServiceIf {
 	
@@ -28,12 +31,14 @@ public class CreateSurveyService implements ServiceIf {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
-
+		
+		// 등록 날짜 생성
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String sDate = format.format(date);
 		MemberDTO dto_mem = (MemberDTO) application.getAttribute("user");
-
+		
+		// 설문 등록
 		SurveyDTO dto = new SurveyDTO();
 		dto.setEmpNo(dto_mem.getEmpNo());
 		dto.setTitle(request.getParameter("title"));

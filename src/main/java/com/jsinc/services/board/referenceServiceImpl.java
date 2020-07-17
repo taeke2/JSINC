@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.jsinc.jsincDAO.BoardDAO;
 import com.jsinc.jsincDTO.BoardDTO;
+
+
+// 작성자 : 임재만
+
+// 자료실 파일 업로드 서비스
 @Service
-public class referenceServiceImpl implements referenceService{
-	
+public class referenceServiceImpl implements referenceService {
+
 	@Inject
 	BoardDAO dao;
-	
+
 	@Override
 	public void create(BoardDTO dto) throws Exception {
 		String title = dto.getTitle();
@@ -42,7 +47,6 @@ public class referenceServiceImpl implements referenceService{
 		return dao.fileView(bno);
 	}
 
-
 	@Override
 	public void fileUpdate(BoardDTO dto) throws Exception {
 		dao.fileUpdate(dto);
@@ -62,6 +66,5 @@ public class referenceServiceImpl implements referenceService{
 	public BoardDTO file(String realfile) throws Exception {
 		return dao.file(realfile);
 	}
-
 
 }

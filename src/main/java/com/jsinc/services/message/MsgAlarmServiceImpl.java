@@ -12,22 +12,26 @@ import org.springframework.ui.Model;
 
 import com.jsinc.jsincDAO.MessageDAO;
 import com.jsinc.jsincDTO.MemberDTO;
+
+// 작성자 : 서해준
+
+// 안읽은 메세지 갯수 알림 서비스
 @Service
-public class MsgAlarmServiceImpl implements ServiceMes{
+public class MsgAlarmServiceImpl implements ServiceMes {
 	@Autowired
 	MessageDAO dao;
+
 	@Override
 	public void execute(Model model) {
 		Map<String, Object> map = model.asMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
-		ServletContext app=session.getServletContext();
-		MemberDTO dto= (MemberDTO) app.getAttribute("user");
-		int empNo=dto.getEmpNo();
-		int result=dao.msgAlarm(empNo);
-		System.out.println("안읽은 메세지 :"+result);
+		ServletContext app = session.getServletContext();
+		MemberDTO dto = (MemberDTO) app.getAttribute("user");
+		int empNo = dto.getEmpNo();
+		int result = dao.msgAlarm(empNo);
+		System.out.println("안읽은 메세지 :" + result);
 		app.setAttribute("msgAlarm", result);
-		
 	}
 
 }

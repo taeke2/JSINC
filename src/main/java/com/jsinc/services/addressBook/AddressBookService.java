@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.AddressBookDAO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 허성택
+
+// 주소록 서비스
 @Service
 public class AddressBookService implements ServiceIf{
 	@Autowired

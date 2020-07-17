@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 
 import com.jsinc.jsincDAO.ToDoListDAO;
 
+// 작성자 : 허성택
+
+// 삭제 버튼 서비스
 @Service
 public class DeleteService implements ServiceIf{
 	@Autowired

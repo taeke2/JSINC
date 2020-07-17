@@ -18,6 +18,9 @@ import com.jsinc.jsincDTO.MemberDTO;
 import com.jsinc.jsincDTO.SurveyDTO;
 import com.jsinc.jsincDTO.SurveyResultDTO;
 
+// 작성자 : 허성택
+
+// 진행중인 설문 리스트 서비스
 @Service
 public class ProceedingListService implements ServiceIf {
 	@Autowired
@@ -65,6 +68,7 @@ public class ProceedingListService implements ServiceIf {
 			dto_sr.setEmpNo(dto_mem.getEmpNo());
 			dto_sr.setTitle(dto.getTitle());
 			result = dao.resultChk(dto_sr);
+			// 마감된 설문은 rList, 진행중인 설문은 gList (red, green)
 			if (result == 1)
 				rList.add(dto);
 			else

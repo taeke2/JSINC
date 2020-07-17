@@ -13,27 +13,31 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.CommunityDAO;
 import com.jsinc.jsincDTO.CommunityDTO;
 import com.jsinc.jsincDTO.MemberDTO;
+
+// 작성자 : 서해준
+
+// 커뮤니티 가입하기 서비스
 @Service
-public class SignUpServiceImpl implements ServiceCom{
+public class SignUpServiceImpl implements ServiceCom {
 	@Autowired
 	CommunityDAO dao;
-	
+
 	@Override
 	public void execute(CommunityDTO dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void getExe(Model model) {
-		Map<String, Object> map=model.asMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String title = request.getParameter("title");
-		int cno =Integer.parseInt(request.getParameter("cno"));
-		String join="Y";
-		HttpSession session=request.getSession();
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		String join = "Y";
+		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
-		MemberDTO memDto =(MemberDTO)application.getAttribute("user");
+		MemberDTO memDto = (MemberDTO) application.getAttribute("user");
 		CommunityDTO dto = new CommunityDTO();
 		dto.setcNo(cno);
 		dto.setEmpNo(memDto.getEmpNo());
@@ -43,7 +47,6 @@ public class SignUpServiceImpl implements ServiceCom{
 		dto.setJoin(join);
 		
 		dao.signUp(dto);
-		
 	}
 
 }

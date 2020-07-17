@@ -1,4 +1,4 @@
-package com.jsinc.services.main;
+package com.jsinc.services.profile;
 
 import java.util.Map;
 
@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.MemberDAO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 허성택
+
+// 비밀번호 변경 서비스
 @Service
 public class PasswordChangeService implements ProfileService {
 	@Autowired

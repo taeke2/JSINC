@@ -14,6 +14,9 @@ import com.jsinc.jsincDAO.CommunityDAO;
 import com.jsinc.jsincDTO.CommunityDTO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 서해준
+
+// 커뮤니티 탈퇴 서비스
 @Service
 public class LeaveServiceImpl implements ServiceCom {
 	@Autowired
@@ -40,7 +43,7 @@ public class LeaveServiceImpl implements ServiceCom {
 		dto.setEmpNo(empNo);
 		dto.setTitle(title);
 		dao.leave(dto);
-		
+
 	}
 
 }

@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.jsinc.jsincDTO.ReportDTO;
 
+// 작성자 : 임재만
+
+// 보고 서비스 인터페이스
 public interface reportService {
 
 	public void reportWrite(ReportDTO dto) ;

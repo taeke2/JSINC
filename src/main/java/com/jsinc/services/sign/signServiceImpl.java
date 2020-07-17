@@ -9,12 +9,17 @@ import com.jsinc.jsincDAO.SignDAO;
 import com.jsinc.jsincDTO.SignDTO;
 
 import groovy.sql.Sql;
+
+// 작성자 : 임재만
+
+// 전자 결재 서비스
 @Service
 public class signServiceImpl implements signService {
 
 	@Autowired
 	SignDAO dao;
 	
+	// 결재 등록
 	@Override
 	public void createSign(SignDTO dto) {
 		String title = dto.getTitle();
@@ -36,35 +41,40 @@ public class signServiceImpl implements signService {
 		dto.setWriter(writer);
 		dao.createSign(dto);
 	}
-
+	
+	// 결재 보기
 	@Override
 	public SignDTO read(int bno) {
 		return dao.read(bno);
 	}
-
+	
+	// 결재 리스트 가져오기
 	@Override
 	public List<SignDTO> lists(String target) {
 		return dao.lists(target);
 	}
-
+	
+	// 결재 삭제
 	@Override
 	public void delete(int bno) {
 		dao.delete(bno);
 	}
-
+	
+	// 결재 대기 리스트
 	@Override
 	public List<SignDTO> waitList(int empno) {
 		return dao.waitList(empno);
 	}
-
+	
+	// 결재 승인 리스트
 	@Override
 	public List<SignDTO> successList() {
 		return dao.successList();
 	}
-
+	
+	// 결재 수정
 	@Override
 	public void update(SignDTO dto) {
 		dao.update(dto);
 	}
-
 }

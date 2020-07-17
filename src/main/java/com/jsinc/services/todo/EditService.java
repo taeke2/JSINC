@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.ToDoListDAO;
 import com.jsinc.jsincDTO.ToDoListDTO;
 
+// 작성자 : 허성택
+
+// 할 일 수정 서비스
 @Service
 public class EditService implements ServiceIf{
 	@Autowired

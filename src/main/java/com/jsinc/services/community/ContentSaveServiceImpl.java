@@ -17,6 +17,9 @@ import com.jsinc.jsincDTO.CommunityConDTO;
 import com.jsinc.jsincDTO.CommunityDTO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 서해준, 허성택
+
+// 커뮤니티 댓글 저장 서비스
 @Service
 public class ContentSaveServiceImpl implements ServiceCom {
 	@Autowired
@@ -36,24 +39,25 @@ public class ContentSaveServiceImpl implements ServiceCom {
 		String content = request.getParameter("content");
 		String coNo = (String) request.getParameter("cno");
 		int cno = Integer.parseInt(coNo);
-		content = content.replace("  ", "&nbsp;&nbsp;");
-		content = content.replace("\n", "<br>");
+		content = content.replace("  ", "&nbsp;&nbsp;"); // text 공백을 특수문자로 공백처리
+		content = content.replace("\n", "<br>"); // 줄바꿈을 <br>로 바꿈
 
-		// 게시판 번호,사원번호,이름,직급,내용,날짜를 보낸다
+		// con dto에 게시판 번호,사원번호,이름,직급,내용,날짜를 set
 		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
 		MemberDTO mdto = (MemberDTO) application.getAttribute("user");
 		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분");
 		String date = fm1.format(new Date());
+
 		CommunityConDTO con = new CommunityConDTO();
-		// 추가 후 dao로 보냄
 		con.setEmpNo(mdto.getEmpNo());
 		con.setName(mdto.getName());
 		con.setRank(mdto.getRank());
 		con.setContent(content);
 		con.setcNo(cno);
 		con.setCom_date(date);
-
+		
+		// 설정 후 dao로 보냄
 		dao.content_save(con);
 
 	}

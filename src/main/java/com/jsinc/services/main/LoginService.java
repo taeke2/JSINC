@@ -15,6 +15,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.MemberDAO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 허성택
+
+// 로그인 서비스
 @Service
 public class LoginService implements ServiceIf {
 	private final int CHK_OK = 0;
@@ -27,12 +30,12 @@ public class LoginService implements ServiceIf {
 	public int execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		String empNo = request.getParameter("empNo");
 		String password = request.getParameter("password");
 		MemberDTO dto = dao.list(empNo);
 		if (dto != null) {
-			// Login Success 
+			// Login Success
 			if (password.equals(dto.getPassword())) {
 				Date date = new Date();
 				SimpleDateFormat format = new SimpleDateFormat("MM");
@@ -41,13 +44,13 @@ public class LoginService implements ServiceIf {
 				String days = day.format(date);
 				HttpSession session = request.getSession();
 				ServletContext application = session.getServletContext();
-				application.setAttribute("user", dto);
+				application.setAttribute("user", dto);	// 로그인 시 사원 정보 dto, 로그인한 월, 일이 application 변수에 저장됨
 				application.setAttribute("loginMonth", month);
 				application.setAttribute("loginDay", days);
-				return CHK_OK;	// 0
+				return CHK_OK; // 0
 			}
 		}
-		return CHK_NO;	// 1
+		return CHK_NO; // 1
 	}
 
 	@Override

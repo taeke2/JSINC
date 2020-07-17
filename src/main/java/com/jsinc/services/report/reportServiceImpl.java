@@ -7,18 +7,24 @@ import org.springframework.stereotype.Service;
 
 import com.jsinc.jsincDAO.ReportDAO;
 import com.jsinc.jsincDTO.ReportDTO;
+
+
+// 작성자 : 임재만
+
+// 보고 서비스
 @Service
 public class reportServiceImpl implements reportService {
 
 	@Autowired
 	ReportDAO dao;
 	
+	// 보고서 작성
 	@Override
 	public void reportWrite(ReportDTO dto) {
-		
 		dao.writeReport(dto);
 	}
-
+	
+	// 보고서 보기
 	@Override
 	public ReportDTO read(int bno) {
 		ReportDTO dto = dao.read(bno);
@@ -41,18 +47,20 @@ public class reportServiceImpl implements reportService {
 		dto.setWriter(writer);
 		return dao.read(bno);
 	}
-
+	
+	// 보고서 수정
 	@Override
 	public void update(ReportDTO dto) {
 		dao.update(dto);
 	}
-
+	
+	// 보고서 삭제
 	@Override
 	public void delete(int bno) {
 		dao.delete(bno);
 	}
-
-
+	
+	// 보고서 전체 리스트 가져오기
 	@Override
 	public List<ReportDTO> listAll(String dep) {
 		return dao.listAll(dep);

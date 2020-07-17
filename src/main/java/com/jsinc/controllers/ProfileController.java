@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jsinc.services.main.PasswordChangeService;
-import com.jsinc.services.main.ProfileEditServiceImpl;
-import com.jsinc.services.main.ProfileService;
-import com.jsinc.services.main.ProfileValueServiceImpl;
+import com.jsinc.services.profile.PasswordChangeService;
+import com.jsinc.services.profile.ProfileEditServiceImpl;
+import com.jsinc.services.profile.ProfileService;
+import com.jsinc.services.profile.ProfileValueServiceImpl;
 
 // 작성자 : 허성택
 

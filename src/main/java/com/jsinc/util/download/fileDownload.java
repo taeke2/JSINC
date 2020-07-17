@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
+
+// 작성자 : 임재만
+
+// 파일 다운로드 서비스
 @Component
-public class fileDownload extends AbstractView{
+public class fileDownload extends AbstractView {
 
 	public fileDownload() {
 		setContentType("application/download; charset=utf-8");
@@ -23,30 +27,29 @@ public class fileDownload extends AbstractView{
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		
-		File file = (File) model.get("downloadFile");
-		
+
+		File file = (File) model.get("downloadFile");	// 다운로드 파일 이름
+
 		response.setContentType(getContentType());
-		response.setContentLength((int)file.length());
-		
+		response.setContentLength((int) file.length());
+
 		String header = request.getHeader("User-Agent");
 		boolean b = header.indexOf("MSIE") > -1;
 		String fileName = null;
+
+		File file2 = (File) model.get("realFileName");	// 파일의 실제 이름
 		
-		
-			File file2 = (File) model.get("realFileName");
-			try {
-			fileName = URLEncoder.encode(file2.getName(),"UTF-8").replaceAll("\\+", "%20");
-			}catch (Exception e) {
-				fileName = URLEncoder.encode(file.getName(),"UTF-8").replaceAll("\\+", "%20");
-			}
-		if(!b) {
-			fileName = new String(file.getName().getBytes("UTF-8"),"iso-8859-1");
+		try {
+			fileName = URLEncoder.encode(file2.getName(), "UTF-8").replaceAll("\\+", "%20");
+		} catch (Exception e) {
+			fileName = URLEncoder.encode(file.getName(), "UTF-8").replaceAll("\\+", "%20");
 		}
-		response.setHeader("content-Disposition", "attachment; filename=\""+file2+"\";");
+		if (!b) {
+			fileName = new String(file.getName().getBytes("UTF-8"), "iso-8859-1");
+		}
+		response.setHeader("content-Disposition", "attachment; filename=\"" + file2 + "\";");
 		response.setHeader("content-Transter-Encoding", "binary");
-		
+
 		OutputStream out = response.getOutputStream();
 		FileInputStream fis = null;
 		try {
@@ -55,10 +58,10 @@ public class fileDownload extends AbstractView{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(fis != null)
+			if (fis != null)
 				try {
 					fis.close();
-				}catch (IOException ioe) {
+				} catch (IOException ioe) {
 					ioe.printStackTrace();
 				}
 		}

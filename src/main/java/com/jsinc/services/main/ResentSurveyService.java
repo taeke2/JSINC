@@ -16,6 +16,9 @@ import com.jsinc.jsincDTO.MemberDTO;
 import com.jsinc.jsincDTO.SurveyDTO;
 import com.jsinc.jsincDTO.SurveyResultDTO;
 
+// 작성자 : 허성택
+
+// 최근 생성된 설문 서비스
 @Service
 public class ResentSurveyService implements ComponentService {
 	@Autowired
@@ -29,7 +32,9 @@ public class ResentSurveyService implements ComponentService {
 		ServletContext application = session.getServletContext();
 		MemberDTO dto_mem = (MemberDTO) application.getAttribute("user");
 		int empNo = dto_mem.getEmpNo();
-		ArrayList<SurveyDTO> list = (ArrayList<SurveyDTO>) dao.list("진행중");
+		ArrayList<SurveyDTO> list = (ArrayList<SurveyDTO>) dao.list("진행중"); // 진행중인 설문 리스트 list에 담기
+
+		// 최근 생성된 설문들 중 참여하지 않은 설문 list2에 담는다.
 		ArrayList<SurveyDTO> list2 = new ArrayList<SurveyDTO>();
 		SurveyResultDTO dto_sr = new SurveyResultDTO();
 		for (SurveyDTO dto : list) {

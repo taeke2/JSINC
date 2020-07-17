@@ -17,15 +17,17 @@ import com.jsinc.jsincDTO.CommunityConDTO;
 import com.jsinc.jsincDTO.CommunityDTO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 서해준
+
+// 커뮤니티 댓글 서비스
 @Service
-public class ReplySaveServiceImpl implements ServiceCom{
+public class ReplySaveServiceImpl implements ServiceCom {
 	@Autowired
 	CommunityDAO dao;
 
 	@Override
 	public void execute(CommunityDTO dto) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -36,13 +38,14 @@ public class ReplySaveServiceImpl implements ServiceCom{
 		ServletContext app = session.getServletContext();
 		MemberDTO mem_dto = (MemberDTO) app.getAttribute("user");
 		CommunityConDTO dto = new CommunityConDTO();
-		//시간
-		Date date = new Date();
-	    SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년 MM월 dd일 ");
-	    SimpleDateFormat fm2 = new SimpleDateFormat("시 mm분");
-	      String time = fm1.format(date) + date.getHours() + fm2.format(date);
 		
-		//내용 추가
+		// 시간
+		Date date = new Date();
+		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년 MM월 dd일 ");
+		SimpleDateFormat fm2 = new SimpleDateFormat("시 mm분");
+		String time = fm1.format(date) + date.getHours() + fm2.format(date);
+
+		// 내용 추가
 		dto.setcNo(Integer.parseInt(request.getParameter("cno")));
 		dto.setName(mem_dto.getName());
 		dto.setContent(request.getParameter("reply"));
@@ -52,13 +55,9 @@ public class ReplySaveServiceImpl implements ServiceCom{
 		dto.setEmpNo(mem_dto.getEmpNo());
 		dto.setRank(mem_dto.getRank());
 		dto.setCom_date(time);
-		System.out.println("step====== 값 :"+dto.getStep());
-		
-		
-		
-		
+		System.out.println("step====== 값 :" + dto.getStep());
+
 		int result = dao.replySave(dto);
-		
 	}
-	
+
 }

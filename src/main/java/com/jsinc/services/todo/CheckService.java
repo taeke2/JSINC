@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.ToDoListDAO;
 import com.jsinc.jsincDTO.ToDoListDTO;
 
+// 작성자 : 허성택
+
+// 체크 버튼 서비스
 @Service
 public class CheckService implements ServiceIf{
 	@Autowired

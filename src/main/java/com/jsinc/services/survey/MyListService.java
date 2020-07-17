@@ -15,6 +15,9 @@ import com.jsinc.jsincDAO.SurveyDAO;
 import com.jsinc.jsincDTO.MemberDTO;
 import com.jsinc.jsincDTO.SurveyDTO;
 
+// 작성자 : 허성택
+
+// 내가 만든 설문 리스트 서비스
 @Service
 public class MyListService implements ServiceIf{
 	@Autowired

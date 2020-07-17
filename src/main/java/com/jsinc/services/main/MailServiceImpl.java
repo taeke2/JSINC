@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.jsinc.handler.MailHandler;
 
+// 작성자 : 서해준
+
+// 메일 전송 서비스
 @Service
 public class MailServiceImpl implements MailService {
 	@Autowired

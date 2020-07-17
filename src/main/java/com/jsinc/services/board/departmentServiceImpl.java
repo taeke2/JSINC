@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.jsinc.jsincDAO.BoardDAO;
 import com.jsinc.jsincDTO.BoardDTO;
 
+// 작성자 : 임재만
+
+// 부서별 게시판 서비스
 @Service
 public class departmentServiceImpl implements departmentService {
 

@@ -22,15 +22,15 @@ import com.jsinc.services.main.ComponentService;
 import com.jsinc.services.main.LoginService;
 import com.jsinc.services.main.MailService;
 import com.jsinc.services.main.MemberServiceImpl;
-import com.jsinc.services.main.PasswordChangeService;
-import com.jsinc.services.main.ProfileEditServiceImpl;
-import com.jsinc.services.main.ProfileService;
-import com.jsinc.services.main.ProfileValueServiceImpl;
+import com.jsinc.services.main.RecentServiceImpl;
 import com.jsinc.services.main.ResentSurveyService;
 import com.jsinc.services.main.ServiceIf;
 import com.jsinc.services.message.MsgAlarmServiceImpl;
-import com.jsinc.services.message.RecentServiceImpl;
 import com.jsinc.services.message.ServiceMes;
+import com.jsinc.services.profile.PasswordChangeService;
+import com.jsinc.services.profile.ProfileEditServiceImpl;
+import com.jsinc.services.profile.ProfileService;
+import com.jsinc.services.profile.ProfileValueServiceImpl;
 
 // 작성자 : 허성택, 서해준, 임재만
 

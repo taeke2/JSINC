@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import com.jsinc.jsincDAO.CommunityDAO;
 import com.jsinc.jsincDTO.CommunityDTO;
 
+// 작성자 : 서해준
+
+// 커뮤니티 생성 서비스
 @Service
 public class CreateServiceImpl implements ServiceCom {
 	@Autowired
@@ -39,9 +42,7 @@ public class CreateServiceImpl implements ServiceCom {
 	@Override
 	public void getExe(Model model) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 }

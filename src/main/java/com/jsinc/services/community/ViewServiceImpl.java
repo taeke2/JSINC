@@ -16,6 +16,9 @@ import com.jsinc.jsincDTO.CommunityConDTO;
 import com.jsinc.jsincDTO.CommunityDTO;
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 서해준, 허성택
+
+// 해당 커뮤니티 페이지 보기 서비스
 @Service
 public class ViewServiceImpl implements ServiceCom {
 	@Autowired
@@ -33,23 +36,24 @@ public class ViewServiceImpl implements ServiceCom {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
-		MemberDTO dto_mem = (MemberDTO)application.getAttribute("user");
+		MemberDTO dto_mem = (MemberDTO) application.getAttribute("user");
 		
+		// 페이지가 리다이렉트 될 때 request에 title이 없으면 세션에서 view를 가져와 title을 가져올 수 있도록 함
 		String title = request.getParameter("title");
-		if(title == null) {
+		if (title == null) {
 			CommunityDTO dto = (CommunityDTO) session.getAttribute("view");
 			title = dto.getTitle();
 		}
-		
+
 		CommunityDTO dto = dao.view(title);
 		dto.setEmpNo(dto_mem.getEmpNo());
-		
+
 		int cno = dto.getcNo();
 		ArrayList<CommunityConDTO> list = (ArrayList<CommunityConDTO>) dao.contentGet(cno);
-		
+
 		int signBut = dao.signBut(dto);
 		model.addAttribute("signBut", signBut);
-		
+
 		session.setAttribute("view", dto);
 		session.setAttribute("conList", list);
 	}
