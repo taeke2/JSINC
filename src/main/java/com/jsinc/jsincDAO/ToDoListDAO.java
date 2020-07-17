@@ -18,7 +18,7 @@ public class ToDoListDAO {
 	private SqlSession sqlSession;
 	
 	// 오늘의 할일 리스트 가져오기
-	public List<ToDoListDTO> list(ToDoListDTO dto) {
+	public List<ToDoListDTO> list(ToDoListDTO dto) { 
 		return sqlSession.selectList(namespace + ".listAll", dto);
 	}
 	
