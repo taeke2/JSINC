@@ -10,7 +10,7 @@ public class CommunityDTO {
 	private String title;// 커뮤니티 이름
 	private String content; // 커뮤니티 소개
 	private String com_date; // 커뮤니티 등록 날짜
-	private String autho; // 접근 권한
+	private String autho; // 관리자 승인 여부
 	private String rank; // 작성자 계급
 	private int members; // 가입자 수
 	private String join; // 가입 상태

@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+// 작성자 : 허성택
+
+// 설문 승인
 @Service
 public class SurveyPermissionService implements ServiceIf {
 	@Autowired

@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 
 import com.jsinc.jsincDTO.MemberDTO;
 
+// 작성자 : 허성택
+
+// 해당 사원 정보 페이지
 @Service
 public class MemberInfoService implements ServiceIf {
 	@Autowired
@@ -22,7 +25,7 @@ public class MemberInfoService implements ServiceIf {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
 		int empNo = Integer.parseInt(request.getParameter("empNo"));
-		session.setAttribute("member", dao.member(empNo));
+		session.setAttribute("member", dao.member(empNo)); // 가져온 사원 정보 세션에 등록
 	}
 
 }
