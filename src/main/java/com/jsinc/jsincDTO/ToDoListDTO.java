@@ -1,11 +1,14 @@
 package com.jsinc.jsincDTO;
 
+// 작성자 : 허성택
+
+// 스케줄 DTO
 public class ToDoListDTO {
-	private int empNo;
-	private String eDate;
-	private String sDate;
-	private String todo;
-	private String checked;
+	private int empNo; // 사원 번호
+	private String eDate; // 마감 날짜
+	private String sDate; // 등록 날짜
+	private String todo; // 할일
+	private String checked; // 체크 상태 (완료 여부)
 
 	public int getEmpNo() {
 		return empNo;

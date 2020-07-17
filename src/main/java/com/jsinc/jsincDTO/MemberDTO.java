@@ -1,19 +1,22 @@
 package com.jsinc.jsincDTO;
 
+// 작성자 : 허성택
+
+// 사원 DTO
 public class MemberDTO {
-	private int empNo;
-	private String password;
-	private String name;
-	private String birth;
-	private String userEmail;
-	private String phoneNumber;
-	private String gender;
-	private String mailChk;
-	private String smsChk;
-	private String dep;
-	private String rank;
-	private String img;
-	private int authority;
+	private int empNo; // 사원 번호
+	private String password; // 비밀번호
+	private String name; // 이름
+	private String birth; // 생년월일
+	private String userEmail; // 이메일
+	private String phoneNumber; // 전화번호
+	private String gender; // 성별
+	private String mailChk; // 메일 수신 여부
+	private String smsChk; // SMS 수신 여부
+	private String dep; // 부서
+	private String rank; // 계급
+	private String img; // 사진
+	private int authority; // 권한
 
 	public String getDep() {
 		return dep;
@@ -118,6 +121,5 @@ public class MemberDTO {
 	public void setAuthority(int authority) {
 		this.authority = authority;
 	}
-	
 
 }

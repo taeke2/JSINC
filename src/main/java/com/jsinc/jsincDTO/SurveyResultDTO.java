@@ -1,9 +1,12 @@
 package com.jsinc.jsincDTO;
 
+// 작성자 : 허성택
+
+// 설문 결과 DTO
 public class SurveyResultDTO {
-	private int empNo;
-	private String title;
-	private String result;
+	private int empNo; // 사원번호
+	private String title; // 설문 제목
+	private String result; // 설문 선택지
 
 	public int getEmpNo() {
 		return empNo;

@@ -1,15 +1,18 @@
 package com.jsinc.jsincDTO;
 
+// 작성자 : 허성택
+
+// 설문 DTO
 public class SurveyDTO {
-	private int empNo;
-	private String title;
-	private String text;
-	private String sDate;
-	private String eDate;
-	private String writer;
-	private String state;
-	private int opt;
-	private String autho;
+	private int empNo; // 사원 번호
+	private String title; // 설문 제목
+	private String text; // 설문 내용
+	private String sDate; // 등록 날짜
+	private String eDate; // 마감 날짜
+	private String writer; // 작성자
+	private String state; // 설문 상태 (진행중, 마감됨)
+	private int opt; // 옵션 ( 2개, 5개)
+	private String autho; // 권한
 
 	public int getOpt() {
 		return opt;
