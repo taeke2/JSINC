@@ -40,8 +40,8 @@ public class CommunityDAO {
 	public void signUp(CommunityDTO dto) {
 		sqlSession.insert(namespace + ".signUp", dto);
 	}
-
-	// 가입 하기 버튼
+	
+	// by해준_가입/탈퇴 하기 버튼_20200604 
 	public int signBut(CommunityDTO dto) {
 		return sqlSession.selectOne(namespace + ".signBut", dto);
 	}

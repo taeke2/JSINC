@@ -21,130 +21,117 @@
 <link href="resources/css/style-responsive.css" rel="stylesheet">
 <body>
 	<jsp:include page="../default/header.jsp" />
-		 <!--sidebar start-->
-      <aside>
-         <div id="sidebar" class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-               <p class="centered">
-                  <a href="profile">
-                     <img src="resources/img${user.img}" class="img-circle" width="80">
-                  </a>
-               </p>
-               <h5 class="centered"><i class="fa fa-user"></i> ${user.name } <br>(${user.userEmail })</h5>
-               
-               <!-- 출/퇴근 관리 -->
-               <li class="mt">
-                  <a href="attendance"> 
-                     <i class="fa fa-asterisk"></i> <span>출/퇴근</span>
-                  </a>
-               </li>
-               
-               <!-- 커뮤니티 -->
-               <li class="sub-menu">
-                  <a class="active" href="javascript:;"> 
-                     <i class="fa fa-desktop"></i> <span>커뮤니티</span>
-                  </a>
-                  <ul class="sub">
-                     <li><a href="createCommunity">커뮤니티 만들기</a></li>
-                     <li><a href="allCommunity">전체 커뮤니티</a></li>
-                     <li><a href="joinCommunity">가입 커뮤니티</a></li>
-                     
-                  </ul>
-               </li>
-               
-               <!-- 게시판 -->
-               <li class="sub-menu"><a href="javascript:;"> <i
-                     class="fa fa-cogs"></i> <span>게시판</span>
-               </a>
-                  <ul class="sub">
-                     <li><a href="allCompanyBoard">전사 게시판</a></li>
-                     <li><a href="departmentBoard">부서 게시판</a></li>
-                     <li><a href="referenceBoard">자료실 게시판</a></li>
-                  </ul>
-               </li>
-               
-               <!-- 전자 결재 -->
-               <li class="sub-menu">
-                  <a href="javascript:;"> 
-                     <i class="fa fa-book"></i>  <span>전자 결재</span>
-                  </a>
-                  <ul class="sub">
-                     <li><a href="newSign">결재 상신</a></li>
-                     <li><a href="signApprove">결재 승인</a></li>
-                     <li><a href="signWait">결재 대기</a></li>
-                     <li><a href="signSuccess">결재 완료</a></li>
-                  </ul>
-               </li>
-               
-               <!-- 주소록 -->
-               <li >
-                  <a href="addressBook"> 
-                     <i class="fa fa-tasks"></i><span>주소록</span>
-                  </a>
-               </li>
-               
-               <!-- 캘린더 -->
-               <li>
-                  <a href="toDoList">
-                     <i class="fa fa-th"></i><span>스케줄</span>
-                  </a>
-               </li>
-               
+	<!--sidebar start-->
+	<aside>
+		<div id="sidebar" class="nav-collapse ">
+			<!-- sidebar menu start-->
+			<ul class="sidebar-menu" id="nav-accordion">
+				<p class="centered">
+					<a href="profile"> <img src="resources/img${user.img}"
+						class="img-circle" width="80">
+					</a>
+				</p>
+				<h5 class="centered">
+					<i class="fa fa-user"></i> ${user.name } <br>(${user.userEmail })
+				</h5>
 
-               
-               <!-- 보고 -->
-               <li>
-                  <a href="report"> 
-                     <i class=" fa fa-bar-chart-o"></i><span>보고</span>
-               		</a>
-               </li>
-               
-               <!-- 쪽지 -->
-               <li class="sub-menu">
-                  <a href="javascript:;"> 
-                     <i class="fa fa-comments-o"></i> <span>쪽지함</span><span class="label label-theme pull-right mail-info">${msgAlarm }</span>
-                  </a>
-                  <ul class="sub">
-                     <li><a href="sentMessage">보낸 쪽지함</a></li>
-                     <li><a href="RecMessage">받은 쪽지함</a></li>
-                  </ul>
-               </li>
-               
-               <!-- 설문 -->
-               <li class="sub-menu">
-                  <a href="javascript:;"> 
-                     <i class="fa fa-map-marker"></i>  <span>설문</span>
-                  </a>
-                  <ul class="sub">
-                  	 <li><a href="createSurvey">새 설문 작성</a></li>
-                     <li><a href="startedSurvey">진행중인 설문</a></li>
-                     <li><a href="endSurvey">마감된 설문</a></li>
-                     <li><a href="mySurvey">내가 만든 설문</a></li>
-                  </ul>
-               </li>
-            </ul>
-            <!-- sidebar menu end-->
-         </div>
-      </aside>
-      <!--sidebar end-->
+				<!-- 출/퇴근 관리 -->
+				<li class="mt"><a href="attendance"> <i
+						class="fa fa-asterisk"></i> <span>출/퇴근</span>
+				</a></li>
+
+				<!-- 커뮤니티 -->
+				<li class="sub-menu"><a class="active" href="javascript:;">
+						<i class="fa fa-desktop"></i> <span>커뮤니티</span>
+				</a>
+					<ul class="sub">
+						<li><a href="createCommunity">커뮤니티 만들기</a></li>
+						<li><a href="allCommunity">전체 커뮤니티</a></li>
+						<li><a href="joinCommunity">가입 커뮤니티</a></li>
+
+					</ul></li>
+
+				<!-- 게시판 -->
+				<li class="sub-menu"><a href="javascript:;"> <i
+						class="fa fa-cogs"></i> <span>게시판</span>
+				</a>
+					<ul class="sub">
+						<li><a href="allCompanyBoard">전사 게시판</a></li>
+						<li><a href="departmentBoard">부서 게시판</a></li>
+						<li><a href="referenceBoard">자료실 게시판</a></li>
+					</ul></li>
+
+				<!-- 전자 결재 -->
+				<li class="sub-menu"><a href="javascript:;"> <i
+						class="fa fa-book"></i> <span>전자 결재</span>
+				</a>
+					<ul class="sub">
+						<li><a href="newSign">결재 상신</a></li>
+						<li><a href="signApprove">결재 승인</a></li>
+						<li><a href="signWait">결재 대기</a></li>
+						<li><a href="signSuccess">결재 완료</a></li>
+					</ul></li>
+
+				<!-- 주소록 -->
+				<li><a href="addressBook"> <i class="fa fa-tasks"></i><span>주소록</span>
+				</a></li>
+
+				<!-- 캘린더 -->
+				<li><a href="toDoList"> <i class="fa fa-th"></i><span>스케줄</span>
+				</a></li>
+
+
+
+				<!-- 보고 -->
+				<li><a href="report"> <i class=" fa fa-bar-chart-o"></i><span>보고</span>
+				</a></li>
+
+				<!-- 쪽지 -->
+				<li class="sub-menu"><a href="javascript:;"> <i
+						class="fa fa-comments-o"></i> <span>쪽지함</span><span
+						class="label label-theme pull-right mail-info">${msgAlarm }</span>
+				</a>
+					<ul class="sub">
+						<li><a href="sentMessage">보낸 쪽지함</a></li>
+						<li><a href="RecMessage">받은 쪽지함</a></li>
+					</ul></li>
+
+				<!-- 설문 -->
+				<li class="sub-menu"><a href="javascript:;"> <i
+						class="fa fa-map-marker"></i> <span>설문</span>
+				</a>
+					<ul class="sub">
+						<li><a href="createSurvey">새 설문 작성</a></li>
+						<li><a href="startedSurvey">진행중인 설문</a></li>
+						<li><a href="endSurvey">마감된 설문</a></li>
+						<li><a href="mySurvey">내가 만든 설문</a></li>
+					</ul></li>
+			</ul>
+			<!-- sidebar menu end-->
+		</div>
+	</aside>
+	<!--sidebar end-->
 	<!--main content start-->
 	<section id="main-content">
 		<section class="wrapper">
 			<h3>
 				<i class="fa fa-angle-right"></i>커뮤니티 글
+				<!-- by해준_가입이 안되어있으면  가입하기, 가입되어있으면 탈퇴하기 나타냄_20200604 -->
 				<c:choose>
 					<c:when test="${signBut==1 }">
-						<button type="button" class="btn btn-round btn-danger" style="margin: 10px;"
-							onclick="location.href='leave?title=${view.title}'">탈퇴 하기..</button>
+						<button type="button" class="btn btn-round btn-danger"
+							style="margin: 10px;"
+							onclick="location.href='leave?title=${view.title}'">탈퇴
+							하기..</button>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-round btn-success"
-							onclick="location.href='signUp?title=${view.title}&cno=${view.cNo }'">가입 하기</button>
+							onclick="location.href='signUp?title=${view.title}&cno=${view.cNo }'">가입
+							하기</button>
 					</c:otherwise>
 				</c:choose>
 			</h3>
-
+			<!-- by해준_가입하기 누를 때 알림창_20200604 -->
 			<script type="text/javascript">
 			$('#sign').ready(function(){
 				$('#sign').click(function(){
@@ -158,69 +145,88 @@
 				<h4>
 					<i class="fa fa-angle-right"></i> <b>마스터</b>
 				</h4>
-				<h4>- <font style="color: blue;">${view.name } ${view.rank }</font></h4>
+				<h4>
+					- <font style="color: blue;">${view.name } ${view.rank }</font>
+				</h4>
 				<h4>
 					<i class="fa fa-angle-right"></i> <b>커뮤니티 명</b>
 				</h4>
-				<h4>- <font style="color: blue;">${view.title }</font></h4>
+				<h4>
+					- <font style="color: blue;">${view.title }</font>
+				</h4>
 				<h4>
 					<i class="fa fa-angle-right"></i> <b>소개</b>
 				</h4>
-				<h4 style="margin-left: 10px;"><font style="color: blue;">${view.content }</font></h4>
+				<h4 style="margin-left: 10px;">
+					<font style="color: blue;">${view.content }</font>
+				</h4>
 			</div>
-			
-			<input type="text" id="hide" style="visibility: hidden;" value="${view.title }">
-			<div style="width: 90%" align="left">
-			<form name="fo">
-				<div class="form-group">
-					<div class="showback">
-						<h4>
-							<i class="fa fa-angle-right"></i>게시글을 작성 해주세요
-						</h4>
-						
-							<textarea class="form-control" id="contact-message" placeholder="내용을 입력해주세요" rows="5" data-rule="required" name="content"></textarea>
-							<button type="submit" class="btn btn-round btn-info" style="margin: 10px;" onclick="register('A')">이야기하기</button>
-							<input type="text" value="${view.title }" name="title" style="visibility: hidden;">
-							<input type="text" value="${view.cNo }" name="cno" style="visibility: hidden;">
-						
-					</div>
-				</div>
-				<hr style="border: ridge 10px lightgray; margin-left: 10px;">
 
-				<div class="room-box">
-					<c:forEach items="${conList }" var="con">
-						<c:choose>
-	
-							<c:when test="${con.step > 0 }">
-								<span style="font-size: 13pt; color: black"> 
-									<span class="fa fa-mail-forward">${con.content } </span>
-								</span>
-								<span class="text-primary"> 
-									<i class="fa fa-user"></i>&nbsp;<a onclick="replyTo('${view.cNo}','${con.idgroup }','${con.step }','${con.indent }','${con.name }','${con.rank }')" style="cursor: pointer;" >${con.name }&nbsp;${con.rank}&nbsp;</a> <i class="fa fa-calendar"></i>&nbsp;${con.com_date }<br>
-								</span>
-							</c:when>
-							<c:when test="${con.step == 0 }">
-			
-								<h5 class="text-primary" style="margin-top: 30px;">
-									<i class="fa fa-user"></i><a onclick="replyTo('${view.cNo}','${con.idgroup }','${con.step }','${con.indent }','${con.name }','${con.rank }')" style="cursor: pointer;">&nbsp;${con.name }&nbsp;${con.rank}&nbsp;</a>
-									<i class="fa fa-calendar"></i>&nbsp;${con.com_date }
-								</h5>
-								<span style="font-size: 13pt; color: black">${con.content }</span>
-								<br>
-							</c:when>
-						</c:choose>
-					</c:forEach>
+			<input type="text" id="hide" style="visibility: hidden;"
+				value="${view.title }">
+			<div style="width: 90%" align="left">
+				<form name="fo">
+					<div class="form-group">
+						<div class="showback">
+							<h4>
+								<i class="fa fa-angle-right"></i>게시글을 작성 해주세요
+							</h4>
+
+							<textarea class="form-control" id="contact-message"
+								placeholder="내용을 입력해주세요" rows="5" data-rule="required"
+								name="content"></textarea>
+							<button type="submit" class="btn btn-round btn-info"
+								style="margin: 10px;" onclick="register('A')">이야기하기</button>
+							<input type="text" value="${view.title }" name="title"
+								style="visibility: hidden;"> <input type="text"
+								value="${view.cNo }" name="cno" style="visibility: hidden;">
+
+						</div>
+					</div>
+					<hr style="border: ridge 10px lightgray; margin-left: 10px;">
+
+					<div class="room-box">
+						<c:forEach items="${conList }" var="con">
+							<c:choose>
+
+								<c:when test="${con.step > 0 }">
+									<span style="font-size: 13pt; color: black"> <span
+										class="fa fa-mail-forward">${con.content } </span>
+									</span>
+									<span class="text-primary"> <i class="fa fa-user"></i>&nbsp;<a
+										onclick="replyTo('${view.cNo}','${con.idgroup }','${con.step }','${con.indent }','${con.name }','${con.rank }')"
+										style="cursor: pointer;">${con.name }&nbsp;${con.rank}&nbsp;</a>
+										<i class="fa fa-calendar"></i>&nbsp;${con.com_date }<br>
+									</span>
+								</c:when>
+								<c:when test="${con.step == 0 }">
+
+									<h5 class="text-primary" style="margin-top: 30px;">
+										<i class="fa fa-user"></i><a
+											onclick="replyTo('${view.cNo}','${con.idgroup }','${con.step }','${con.indent }','${con.name }','${con.rank }')"
+											style="cursor: pointer;">&nbsp;${con.name }&nbsp;${con.rank}&nbsp;</a>
+										<i class="fa fa-calendar"></i>&nbsp;${con.com_date }
+									</h5>
+									<span style="font-size: 13pt; color: black">${con.content }</span>
+									<br>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</div>
 					<div>
 						<c:set var="idgroup" value="${con.idgroup }" />
-						
-							<input type="text" style="width: 60%; margin-top: 20px;" placeholder="댓글 입력" name="reply" id="reply">
-							<button type="button" class="btn btn-round btn-success" onclick="register('B')">등록</button>
-							<input type="text" name="cno" id="cn" style="visibility: hidden;"><input type="text" name="idGroup" id="idGroup" style="visibility: hidden;">
-							<input type="text" name="step" id="step" style="visibility: hidden;"><input type="text" name="indent" id="indent" style="visibility: hidden;">
-				</form>		
-					
+
+						<input type="text" style="width: 60%; margin-top: 20px;"
+							placeholder="댓글 입력" name="reply" id="reply">
+						<button type="button" class="btn btn-round btn-success"
+							onclick="register('B')">등록</button>
+						<input type="text" name="cno" id="cn" style="visibility: hidden;"><input
+							type="text" name="idGroup" id="idGroup"
+							style="visibility: hidden;"> <input type="text"
+							name="step" id="step" style="visibility: hidden;"><input
+							type="text" name="indent" id="indent" style="visibility: hidden;">
 					</div>
-				</div>
+				</form>
 			</div>
 		</section>
 	</section>

@@ -25,19 +25,16 @@
 	</select>
 	<!-- 커뮤니티 가입 -->
 	<insert id="signUp">
-		insert into
-		joincom(empNo,title,join,members,name,rank,cNo)
+		insert into joincom(empNo,title,join,members,name,rank,cNo)
 		values(#{empNo},#{title},#{join},1+#{members},#{name},#{rank},#{cNo})
 	</insert>
-	<!-- 가입버튼 활성 비활성 -->
+	<!-- by해준_가입버튼 활성 비활성_20200604 -->
 	<select id="signBut" resultType="int" parameterType="dto_com">
-		select
-		count(*) from joincom where empno=#{empNo} and title=#{title}
+		select count(*) from joincom where empno=#{empNo} and title=#{title}
 	</select>
 	<!-- by해준_가입 여부 확인_20200603 -->
 	<select id="joinOrNot" resultType="int">
-		select count(*) from joinCom
-		where empNo=#{empNo} and title=#{title}
+		select count(*) from joinCom where empNo=#{empNo} and title=#{title}
 	</select>
 	<!-- by해준_가입 인원 수 카운트_20200603 -->
 	<select id="countMember" resultType="int">

@@ -45,13 +45,13 @@ public class ViewServiceImpl implements ServiceCom {
 			title = dto.getTitle();
 		}
 
-		CommunityDTO dto = dao.view(title);	// 커뮤니티 정보 가져오기
+		CommunityDTO dto = dao.view(title); // 커뮤니티 정보 가져오기
 		dto.setEmpNo(dto_mem.getEmpNo());
-		
+
 		int cno = dto.getcNo();
 		ArrayList<CommunityConDTO> list = (ArrayList<CommunityConDTO>) dao.contentGet(cno);
 
-		int signBut = dao.signBut(dto);
+		int signBut = dao.signBut(dto); // 가입 여부 확인하기
 		model.addAttribute("signBut", signBut);
 
 		session.setAttribute("view", dto);
