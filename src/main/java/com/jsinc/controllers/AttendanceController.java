@@ -16,21 +16,20 @@ import com.jsinc.services.attendance.GoWorkService;
 import com.jsinc.services.attendance.LeaveWorkService;
 import com.jsinc.services.attendance.ServiceIf;
 
-// 작성자 : 허성택
-
+// 출&퇴근 Controller
 @Controller
 public class AttendanceController {
 	ApplicationContext ac = App.ac;
 	AttendanceDTO dto_att = new AttendanceDTO(); // 사원의 출&퇴근 시간 기록을 저장하는 dto
 	private ServiceIf service;
 
-	// 출/퇴근 페이지
+	// by성택_출/퇴근 페이지_20200527
 	@RequestMapping("attendance")
 	public String attendance(Model model) {
 		return "attendance/attendance";
 	}
 
-	// 출근
+	// by성택_출근시 dto_att에 출근시간 기록_20200528
 	@RequestMapping("goWork")
 	public String goWork(HttpSession session) {
 		ServletContext application = session.getServletContext();
@@ -45,7 +44,7 @@ public class AttendanceController {
 		return "redirect:attendance";
 	}
 
-	// 퇴근
+	// by성택_퇴근시 퇴근시간과 근무시간 DB에 저장_20200528
 	@RequestMapping("leaveWork")
 	public String leaveWork(HttpSession session) {
 		ServletContext application = session.getServletContext();
@@ -60,7 +59,7 @@ public class AttendanceController {
 		return "redirect:attendance";
 	}
 
-	// 출/퇴근 기록 리스트 보기
+	// by성택_출/퇴근 기록 리스트 보기_20200527
 	@RequestMapping("list")
 	public String list(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);

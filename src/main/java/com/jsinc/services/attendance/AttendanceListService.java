@@ -15,20 +15,20 @@ import com.jsinc.jsincDAO.AttendanceDAO;
 import com.jsinc.jsincDTO.AttendanceDTO;
 import com.jsinc.jsincDTO.MemberDTO;
 
-// 작성자 : 허성택
-
 // 출&퇴근 시간 기록 리스트 서비스
 @Service
 public class AttendanceListService implements ServiceIf {
 	@Autowired
 	AttendanceDAO dao;
 
+	// 사용 안함
 	@Override
 	public AttendanceDTO execute(AttendanceDTO dto_att) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	// by성택_사원의 해당 월 근무 시간 기록 list_20200527
 	@Override
 	public void list(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -37,7 +37,6 @@ public class AttendanceListService implements ServiceIf {
 		double totWorkTime = 0.0; // 한달 총 근무 시간
 
 		String month = request.getParameter("month"); // 해당 월
-		System.out.println(month);
 
 		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
@@ -46,7 +45,7 @@ public class AttendanceListService implements ServiceIf {
 
 		ArrayList<AttendanceDTO> listAll = (ArrayList<AttendanceDTO>) dao.list(user); // 사원의 모든 출&퇴근 기록을 listAll 리스트에 담기
 
-		// 해당 월에 해당되는 날짜의 출&퇴근 기록을 list에 담기
+		// 해당 월에 해당되는 날짜의 출&퇴근 기록을 list에 담기_20200528 수정
 		ArrayList<AttendanceDTO> list = new ArrayList<AttendanceDTO>();
 		for (int i = 0; i < listAll.size(); i++) {
 			if (listAll.get(i).getGoWork().substring(0, 7).equals("2020." + month)) {
@@ -55,17 +54,10 @@ public class AttendanceListService implements ServiceIf {
 				dto.setGoWork(listAll.get(i).getGoWork());
 				dto.setLeaveWork(listAll.get(i).getLeaveWork());
 				dto.setWorkTime(listAll.get(i).getWorkTime());
-				totWorkTime += listAll.get(i).getWorkTime();
+				totWorkTime += listAll.get(i).getWorkTime(); // 해당 월의 총 근무 시간 계산
 				list.add(dto);
 			}
 		}
-
-		// 해당 월의 총 근무 시간 계산
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getEmpNo() + ", " + list.get(i).getGoWork() + ", "
-					+ list.get(i).getLeaveWork() + ", " + list.get(i).getWorkTime());
-		}
-		System.out.println(month + "월 총 근무 시간 : " + String.format("%.1f", totWorkTime) + "시간");
 
 		session.setAttribute("month", month); // 해당 월 세션에 등록
 		session.setAttribute("totWorkTime", String.format("%.1f", totWorkTime)); // 해당 월 총 근무시간 세션에 등록

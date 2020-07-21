@@ -32,8 +32,7 @@ import com.jsinc.services.profile.ProfileEditServiceImpl;
 import com.jsinc.services.profile.ProfileService;
 import com.jsinc.services.profile.ProfileValueServiceImpl;
 
-// 작성자 : 허성택, 서해준, 임재만
-
+// 메인 페이지 Controller
 @Controller
 public class MainController {
 	ApplicationContext ac = App.ac;
@@ -44,11 +43,11 @@ public class MainController {
 	MailService mailService;
 	ServiceMes msgService;
 	ComponentService comService;
-
+	// by재만_파일 업로드 경로 설정_20200525
 	@Resource(name = "uploadPath") // 업로드 경로 (출처 : servlet-context)
 	private String uploadPath;
 
-	// 로그인 확인
+	// by성택_사원 로그인 ID,PW 확인_20200520
 	@RequestMapping("loginChk")
 	public String loginChk(Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("request", request);
@@ -64,42 +63,41 @@ public class MainController {
 		return "home";
 	}
 
-	// 메인 페이지
+	// by성택_메인 페이지 나타내기_20200520
 	@RequestMapping("index")
 	public String index(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		// 최근 등록된 설문
+		// by성택_최근 등록된 설문 리스트_20200616 추가
 		comService = ac.getBean("resentSurveyService", ResentSurveyService.class);
 		comService.execute(model);
 
-		// 안읽은 메세지
+		// by해준_안읽은 메세지 리스트_20200616 추가
 		msgService = ac.getBean("recentServiceImpl", RecentServiceImpl.class);
 		msgService.execute(model);
 
 		return "index";
 	}
 
-	// 로그아웃
+	// by성택_로그아웃_20200522
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		ServletContext application = session.getServletContext();
 		application.removeAttribute("user"); // 로그인 유저 정보 삭제
 		application.removeAttribute("start"); // 출근 시간 삭제
 		application.removeAttribute("end"); // 퇴근 시간 삭제
-		return "home";
+		return "home";	// 로그인 페이지로 이동
 	}
 
-	// 회원가입
+	// by해준_회원가입 페이지_20200520
 	@RequestMapping("join")
 	public String view() {
 		return "join";
 	}
 	
-	// 이메일 인증번호 전송
+	// by해준_회원가입시 이메일 인증번호 전송_20200529
 	@RequestMapping("doSend")
 	@ResponseBody
 	public String doSend(String email, String title, String body, HttpServletRequest req) {
-
 		title = "JSInc. 회원가입 인증 코드 발급 안내 입니다.";
 		email = req.getParameter("userEmail");
 		body = "귀하의 인증 코드는" + vali + " 입니다.";
@@ -126,7 +124,7 @@ public class MainController {
 		return (String) sendRs.get("msg");
 	}
 
-	// 인증번호 일치여부 확인
+	// by해준_인증번호 일치여부 확인_20200530
 	@RequestMapping(value = "chkEmail", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String chkEmail(HttpServletRequest req) {
@@ -142,7 +140,7 @@ public class MainController {
 		}
 	}
 	
-	// 사원번호 중복확인
+	// by해준_사원번호 중복확인_20200601
 	@RequestMapping(value = "empNoChk", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String empNoChk(MemberDTO dto) throws Exception {
@@ -153,7 +151,7 @@ public class MainController {
 		return result + "";
 	}
 	
-	// 이메일 중복확인
+	// by해준_이메일 중복확인_20200601
 	@RequestMapping(value = "userEmailChk", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String userEmailChk(HttpServletRequest req) throws Exception {
@@ -165,7 +163,7 @@ public class MainController {
 		return result + "";
 	}
 	
-	// 사진 업로드
+	// by재만_사진 업로드_20200608
 	@RequestMapping("registerMem")
 	public String registerMem(MemberDTO dto, Model model, MultipartFile profile) throws Exception {
 		// 업로드
@@ -187,7 +185,7 @@ public class MainController {
 		return "home";
 	}
 	
-	// 비밀번호 초기화
+	// by해준_비밀번호 초기화_20200604
 	@RequestMapping("lostPw")
 	@ResponseBody
 	public String lostPw(MemberDTO dto) throws Exception {
@@ -220,21 +218,23 @@ public class MainController {
 
 	}
 	
-	// 화면 잠금
+	// by성택_화면 잠금 설정_20200530
 	@RequestMapping("lockScreen")
 	public String lockScreen() {
 		return "lockScreen";
 	}
 	
-	// 화면 잠금 해체
+	// by성택_화면 잠금 해체_20200530
 	@RequestMapping("lock")
 	public String lock(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		ServletContext application = session.getServletContext();
 		MemberDTO dto = (MemberDTO) application.getAttribute("user");
+		// 입력한 비밀번호가 일치하면 메인화면 사용가능
 		if (dto.getPassword().equals(request.getParameter("password"))) {
 			return "redirect:index";
 		}
+		// 불일치시 그대로 화면잠금 페이지
 		return "redirect:lockScreen";
 	}
 

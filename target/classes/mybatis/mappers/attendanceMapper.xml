@@ -3,10 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.jsinc.mybatis.Attendance">
+	<!-- by성택_사원의 출&퇴근 기록 가져오기_20200527 -->
 	<select id="listAll" resultType="dto_att">
 		select * from jsinc_attendance where empNo=#{user}
 	</select>
-
+	
+	<!-- by성택_출&퇴근 시간 DB에 저장_20200528 -->
 	<insert id="input" parameterType="dto_att">
 		insert into jsinc_attendance values(#{empNo}, #{goWork}, #{leaveWork}, #{workTime})
 	</insert>

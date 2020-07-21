@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.jsinc.jsincDTO.CommunityConDTO;
 import com.jsinc.jsincDTO.CommunityDTO;
 
-// 작성자 : 서해준, 허성택
-
 // 커뮤니티 DAO
 @Repository
 public class CommunityDAO {
@@ -18,22 +16,22 @@ public class CommunityDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 커뮤니티 만들기
+	// by해준_커뮤니티 생성_20200602
 	public void create(CommunityDTO dto) {
 		sqlSession.insert(namespace + ".input", dto);
 	}
 
-	// 전체 커뮤니티 보기
+	// by해준_전체 커뮤니티 보기_20200603
 	public List<CommunityDTO> allCom() {
 		return sqlSession.selectList(namespace + ".getAll");
 	}
 
-	// 내가 가입한 커뮤니티
+	// by해준_내가 가입한 커뮤니티_20200603
 	public List<CommunityDTO> myCom(int empNo) {
 		return sqlSession.selectList(namespace + ".myCom", empNo);
 	}
 
-	// 커뮤니티 클릭 시
+	// by해준_커뮤니티 클릭 시 해당 커뮤니티 정보 가져오기_20200615 수정
 	public CommunityDTO view(String title) {
 		return sqlSession.selectOne(namespace + ".view", title);
 	}
@@ -48,12 +46,12 @@ public class CommunityDAO {
 		return sqlSession.selectOne(namespace + ".signBut", dto);
 	}
 
-	// 가입여부
+	// by해준_가입여부 확인_20200603
 	public int joinOrNot(CommunityDTO dto) {
 		return sqlSession.selectOne(namespace + ".joinOrNot", dto);
 	}
 
-	// 가입인원
+	// by해준_가입인원수 확인_20200603
 	public int countMember(CommunityDTO dto) {
 		return sqlSession.selectOne(namespace + ".countMember", dto);
 	}

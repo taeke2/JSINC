@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.jsinc.jsincDTO.MemberDTO;
 
-// 작성자 : 허성택
-
 // 주소록 DAO
 @Repository
 public class AddressBookDAO {
@@ -17,7 +15,7 @@ public class AddressBookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 전 사원 리스트 불러오기
+	//by 성택_해당 부서 사원 리스트 불러오기_20200603
 	public List<MemberDTO> listAll(String dep){
 		return sqlSession.selectList(namespace + ".listAll", dep);
 	}

@@ -10,12 +10,11 @@ import org.springframework.ui.Model;
 
 import com.jsinc.jsincDTO.AttendanceDTO;
 
-// 작성자 : 허성택
-
 // 출근 시간 기록 서비스
 @Service
 public class GoWorkService implements ServiceIf {
 
+	// by성택_출근 시간 기록_20200528
 	@Override
 	public AttendanceDTO execute(AttendanceDTO dto_att) {
 		// 출근 시간 생성
@@ -23,14 +22,14 @@ public class GoWorkService implements ServiceIf {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd ");
 		SimpleDateFormat time = new SimpleDateFormat(":mm:ss");
 		String start = format.format(date) + date.getHours() + time.format(date); // 시간을 24h로 표현하기 위함
-		System.out.println("출근 : " + start);
 
-		dto_att.setGoWork(start);
+		dto_att.setGoWork(start); // 출근시간을 매개변수에 set
 		return dto_att; // 출근 시간이 기록된 dto를 리턴
 	}
 
+	// 사용 안함
 	@Override
 	public void list(Model model) {
-
+		
 	}
 }

@@ -22,20 +22,20 @@ import com.jsinc.services.community.ServiceCom;
 import com.jsinc.services.community.SignUpServiceImpl;
 import com.jsinc.services.community.ViewServiceImpl;
 
-// 작성자 : 서해준, 허성택
-
+// 커뮤니티 Controller
 @Controller
 public class CommunityController {
 	ApplicationContext ac = App.ac;
 	private ServiceCom service;
 
-	// 커뮤니티 만들기
+	// by해준_커뮤니티 만들기 페이지_20200602
 	@RequestMapping("createCommunity")
 	public String createCommunity() {
 		return "community/createCommunity";
 	}
 
-	// 전체 커뮤니티
+	// by해준_전체 커뮤니티 보기_20200603
+	// by성택_전체 커뮤니티 보기_20200610 수정
 	@RequestMapping("allCommunity")
 	public String allCommunity(HttpServletRequest req, Model model) {
 		model.addAttribute("request", req);
@@ -43,18 +43,17 @@ public class CommunityController {
 		service.getExe(model);
 		return "community/allCommunity";
 	}
-
-	// 가입 커뮤니티
+	// by해준_가입한 커뮤니티 보기_20200603
+	// by성택_가입한 커뮤니티 보기_20200615 수정
 	@RequestMapping("joinCommunity")
 	public String joinCommunity(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service = ac.getBean("myServiceImpl", MyServiceImpl.class);
 		service.getExe(model);
-
 		return "community/joinCommunity";
 	}
-
-	// 커뮤니티를 만들었을 경우 데이터 넘어옴
+	
+	// by해준_커뮤니티 생성_20200602
 	@RequestMapping("submitCom")
 	public String submitCom(HttpSession session, CommunityDTO dto) {
 		ServletContext application = session.getServletContext();
@@ -69,7 +68,7 @@ public class CommunityController {
 		return "redirect:allCommunity";
 	}
 
-	// 해당 커뮤니티에 입장시
+	// by해준_해당 커뮤니티에 입장시_20200604
 	@RequestMapping(value = "viewCom", method = RequestMethod.GET)
 	public String viewCom(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);

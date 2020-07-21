@@ -24,12 +24,12 @@
 	
 	<context:component-scan base-package="com.jsinc.*" />
 		<!-- 브라우저가 multipart/form-data 데이터로 보내는 파일을 처리하기 위한 MultipartResolver 클래스를 bean으로 등록 -->
-<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></beans:bean>
-<!-- 업로드 패스 설정 --> 
-<beans:bean class="java.lang.String" id="uploadPath">
- <beans:constructor-arg value=".metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSINC\resources" />
-
-</beans:bean>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></beans:bean>
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<!-- .metadata 앞에 자신의 workspace 경로 설정 -->
+		<beans:constructor-arg value="\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSINC\resources" />
+	</beans:bean>
 	
 	
 </beans:beans>

@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+
+<!-- by성택,해준_로그인페이지_20200518 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,16 +13,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Dashboard">
-<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>JS.Inc</title>
 <!-- Favicons -->
 <link href="resources/img/favicon.png" rel="icon">
 <link href="resources/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Bootstrap core CSS -->
-<link href="resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/lib/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <!--external css-->
-<link href="resources/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="resources/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
 <!-- Custom styles for this template -->
 <link href="resources/css/style.css" rel="stylesheet">
 <link href="resources/css/style-responsive.css" rel="stylesheet">
@@ -31,27 +37,32 @@
 			<form class="form-login" name="formLogin">
 				<h2 class="form-login-heading">sign in now</h2>
 				<div class="login-wrap">
-					<input type="text" name="empNo" class="form-control" placeholder="사원 번호" autofocus><br>
-					<input type="password" name="password" class="form-control" placeholder="비밀번호"> 
-					<label class="checkbox"> 
-						<span class="pull-right"> 
-						<a data-toggle="modal" href="login#myModal"> 비밀번호를 잊으셨습니까?</a>
+					<input type="text" name="empNo" class="form-control"
+						placeholder="사원 번호" autofocus><br> <input
+						type="password" name="password" class="form-control"
+						placeholder="비밀번호"> <label class="checkbox"> <span
+						class="pull-right"> <a data-toggle="modal"
+							href="login#myModal"> 비밀번호를 잊으셨습니까?</a>
 					</span>
 					</label>
-					<button class="btn btn-theme btn-block" type="button" onclick="form_submit('L')">
+					<button class="btn btn-theme btn-block" type="button"
+						onclick="form_submit('L')">
+						<!-- 'L'(Login)값을 인자로 전달 -->
 						<i class="fa fa-lock"></i> 로그인
 					</button>
 					<hr>
 					<div class="login-social-link centered">
 						<p>관리자 계정으로 로그인</p>
-						<button class="btn btn-facebook" type="button" style="width: 100%;" onclick="form_submit('M')">관리자 로그인</button>
+						<button class="btn btn-facebook" type="button"
+							style="width: 100%;" onclick="form_submit('M')">관리자 로그인</button>
+							<!-- 'M'(Master Login)값을 인자로 전달 -->
 					</div>
 					<hr>
 					<div class="registration">
 						아직 계정이 없으신가요?<br /> <a href="join"> 회원가입 </a>
 					</div>
 				</div>
-				
+
 				<!-- Modal -->
 				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
 					tabindex="-1" id="myModal" class="modal fade">
@@ -78,23 +89,24 @@
 					</div>
 				</div>
 				<!-- /modal -->
-				
+
 				<!-- Login submit setting -->
 				<script type="text/javascript">
-					// 인자가 'L'이면 사원 로그인, 'M'이면 관리자 로그인  
+					// by성택_인자가 'L'이면 사원 로그인, 'M'이면 관리자 로그인_20200615 추가
 					function form_submit(arg) {
-						if(arg=="L"){
+						if (arg == "L") {
 							document.formLogin.action = "loginChk";
 							document.formLogin.submit();
-						}else if(arg=="M"){
+						} else if (arg == "M") {
 							document.formLogin.action = "masterLogin";
 							document.formLogin.submit();
 						}
 					}
 				</script>
-				
+
 				<!-- Password reset -->
 				<script type="text/javascript">
+					// by해준_해당하는 이메일로 임시비밀번호를 전송_20200613
 					function lost() {
 						$.ajax({
 							url : "lostPw",
@@ -107,7 +119,6 @@
 								console.log("성공")
 							},
 							error : function() {
-
 								console.log("실패")
 							}
 						});
@@ -121,7 +132,8 @@
 	<script src="resources/lib/jquery/jquery.min.js"></script>
 	<script src="resources/lib/bootstrap/js/bootstrap.min.js"></script>
 	<!--BACKSTRETCH-->
-	<script type="text/javascript" src="resources/lib/jquery.backstretch.min.js"></script>
+	<script type="text/javascript"
+		src="resources/lib/jquery.backstretch.min.js"></script>
 	<script>
 		$.backstretch("resources/img/login-bg.jpg", {
 			speed : 500
